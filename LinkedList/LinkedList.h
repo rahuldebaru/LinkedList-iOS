@@ -34,6 +34,9 @@
 // remove given Node
 - (void) remove:(Node*)node;
 
+// remove Node at given Position
+- (void) removeNodeAtPosition:(int)position;
+
 // remove first occurance of given data object id
 - (void) removeFirst:(id)element;
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F62407F1D8B00F0008E51D2 /* LLCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F62407E1D8B00F0008E51D2 /* LLCollectionViewCell.m */; };
+		5F6240831D8B1CA5008E51D2 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6240821D8B1CA5008E51D2 /* UIView+Toast.m */; };
 		5FDF22861D88F5AB00BF9B07 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDF22851D88F5AB00BF9B07 /* main.m */; };
 		5FDF22891D88F5AB00BF9B07 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDF22881D88F5AB00BF9B07 /* AppDelegate.m */; };
 		5FDF228C1D88F5AB00BF9B07 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDF228B1D88F5AB00BF9B07 /* ViewController.m */; };
@@ -29,6 +31,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5F62407D1D8B00F0008E51D2 /* LLCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCollectionViewCell.h; sourceTree = "<group>"; };
+		5F62407E1D8B00F0008E51D2 /* LLCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCollectionViewCell.m; sourceTree = "<group>"; };
+		5F6240811D8B1CA5008E51D2 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		5F6240821D8B1CA5008E51D2 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		5FDF22811D88F5AB00BF9B07 /* LinkedList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkedList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDF22851D88F5AB00BF9B07 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5FDF22871D88F5AB00BF9B07 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -66,6 +72,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F6240801D8B1CA5008E51D2 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				5F6240811D8B1CA5008E51D2 /* UIView+Toast.h */,
+				5F6240821D8B1CA5008E51D2 /* UIView+Toast.m */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
 		5FDF22781D88F5AB00BF9B07 = {
 			isa = PBXGroup;
 			children = (
@@ -87,19 +102,22 @@
 		5FDF22831D88F5AB00BF9B07 /* LinkedList */ = {
 			isa = PBXGroup;
 			children = (
+				5F6240801D8B1CA5008E51D2 /* Toast */,
+				5FDF22AC1D88F8D500BF9B07 /* LinkedList.h */,
+				5FDF22AD1D88F91800BF9B07 /* LinkedList.m */,
+				5FDF22AF1D88F9D700BF9B07 /* Node.h */,
+				5FDF22B01D88F9FF00BF9B07 /* Node.m */,
 				5FDF22871D88F5AB00BF9B07 /* AppDelegate.h */,
 				5FDF22881D88F5AB00BF9B07 /* AppDelegate.m */,
 				5FDF228A1D88F5AB00BF9B07 /* ViewController.h */,
 				5FDF228B1D88F5AB00BF9B07 /* ViewController.m */,
+				5F62407D1D8B00F0008E51D2 /* LLCollectionViewCell.h */,
+				5F62407E1D8B00F0008E51D2 /* LLCollectionViewCell.m */,
 				5FDF228D1D88F5AB00BF9B07 /* Main.storyboard */,
 				5FDF22931D88F5AB00BF9B07 /* Assets.xcassets */,
 				5FDF22951D88F5AB00BF9B07 /* LaunchScreen.storyboard */,
 				5FDF22981D88F5AB00BF9B07 /* Info.plist */,
 				5FDF22841D88F5AB00BF9B07 /* Supporting Files */,
-				5FDF22AC1D88F8D500BF9B07 /* LinkedList.h */,
-				5FDF22AD1D88F91800BF9B07 /* LinkedList.m */,
-				5FDF22AF1D88F9D700BF9B07 /* Node.h */,
-				5FDF22B01D88F9FF00BF9B07 /* Node.m */,
 			);
 			path = LinkedList;
 			sourceTree = "<group>";
@@ -221,9 +239,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F62407F1D8B00F0008E51D2 /* LLCollectionViewCell.m in Sources */,
 				5FDF228C1D88F5AB00BF9B07 /* ViewController.m in Sources */,
 				5FDF22891D88F5AB00BF9B07 /* AppDelegate.m in Sources */,
 				5FDF22B11D88F9FF00BF9B07 /* Node.m in Sources */,
+				5F6240831D8B1CA5008E51D2 /* UIView+Toast.m in Sources */,
 				5FDF22AE1D88F91800BF9B07 /* LinkedList.m in Sources */,
 				5FDF22861D88F5AB00BF9B07 /* main.m in Sources */,
 			);
@@ -416,6 +436,7 @@
 				5FDF22A81D88F5AB00BF9B07 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5FDF22A91D88F5AB00BF9B07 /* Build configuration list for PBXNativeTarget "LinkedListTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +445,7 @@
 				5FDF22AB1D88F5AB00BF9B07 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

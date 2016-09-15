@@ -119,6 +119,22 @@
     node = nil;
 }
 
+// remove given Node
+- (void) removeNodeAtPosition:(int)position {
+    
+    if(!nodeCount || nodeCount < position)
+        return;
+    Node *n = head;
+    int i = 0;
+    while(i < position-1)
+    {
+        n = n.next;
+        i++;
+    }
+    [self remove:n];
+}
+
+
 - (void) removeFirst:(id)element {
     for (Node *n=head; n != NULL; n = n.next) {
         if (n.data == element) {
