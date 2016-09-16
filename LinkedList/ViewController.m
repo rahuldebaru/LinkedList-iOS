@@ -12,7 +12,8 @@
 #import "LLCollectionViewCell.h"
 #import "UIView+Toast.h"
 
-@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, LLCollectionViewCellDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *lblEmptyList;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UITextField *txtData;
@@ -58,19 +59,28 @@
 
 - (IBAction)didTapAdd:(id)sender {
     
-    int position = [self.txtPosition.text intValue];
-    if(position)
+    [self.txtData resignFirstResponder];
+    [self.txtPosition resignFirstResponder];
+    
+    if(!self.txtData.text.length)
     {
-        [self.list insert:self.txtData.text atPosition:position];
+        [self.view makeToast:@"Data cannot be empty!"];
+        return;
+    }
+    
+    int position = [self.txtPosition.text intValue];
+    if(position && [self.list insert:self.txtData.text atPosition:position])
+    {
         [self.collectionView reloadData];
         [self.view makeToast:@"New node inserted"];
     }
-    else
+    else if([self.list add:self.txtData.text])
     {
-        [self.list add:self.txtData.text];
         [self.collectionView reloadData];
         [self.view makeToast:@"New node added"];
     }
+    else
+        [self.view makeToast:@"Error creating node!"];
     self.txtData.text = @"";
     self.txtPosition.text = @"";
 }
@@ -85,34 +95,83 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if(!self.list.count)
+    {
+        self.lblEmptyList.hidden = NO;
+        self.collectionView.hidden = YES;
         return 0;
-    return (self.list.count /** 2 - 1*/);
+    }
+    self.lblEmptyList.hidden = YES;
+    self.collectionView.hidden = NO;
+    return (self.list.count * 2 - 1);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *identifier = @"CollectionViewDataCellID";
+    static NSString *identifier1 = @"CollectionViewDataCellID";
+    static NSString *identifier2 = @"CollectionViewArrowCellID";
     
-    LLCollectionViewCell *cell = (LLCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    
-    Node* node = [self.list getNodeAtPosition:((int)indexPath.row+1)];
-    if(node) {
-        [cell setData:node.data];
-        [cell setEditing:self.isEditMode];
+    if(indexPath.row % 2 == 0) {
+        LLCollectionViewCell *cell = (LLCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:identifier1 forIndexPath:indexPath];
+        long derivedPosition = indexPath.row / 2 + 1;
+        Node* node = [self.list getNodeAtPosition:derivedPosition];
+        if(node) {
+            [cell setData:node.data];
+            [cell setEditing:self.isEditMode];
+            [cell setCellDelegate:self];
+        }
+        return cell;
+    } else {
+        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier2 forIndexPath:indexPath];
+        return cell;
     }
-    
-    return cell;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     int count = self.list.count;
     int maxNumOfItems = collectionView.frame.size.width/50;
     int width = 50 + 10;
     if (count <= maxNumOfItems) {
         width = collectionView.frame.size.width/count;
     }
-    return CGSizeMake(width, self.collectionView.frame.size.height);
+    return CGSizeMake(width, self.collectionView.frame.size.height - 40);
 }
+
+-(void)didTapDeleteButton:(id)sender {
+    
+    UIButton *button = (UIButton *)sender;
+    UICollectionViewCell *cell = (UICollectionViewCell *) [self superviewWithClassName:@"LLCollectionViewCell" fromView:button];
+    if (cell)
+    {
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+        // do whatever action you need with the indexPath...
+        
+        long actualIndex = indexPath.row / 2 + 1;
+        
+        if([self.list removeNodeAtPosition:actualIndex])
+        {
+            [self.view makeToast:@"Node deleted"];
+            [self.collectionView reloadData];
+        }
+        else
+            [self.view makeToast:@"Error deleting node!"];
+        
+    }
+}
+
+
+- (UIView *)superviewWithClassName:(NSString *)className fromView:(UIView *)view
+{
+    while (view)
+    {
+        if ([NSStringFromClass([view class]) isEqualToString:className])
+        {
+            return view;
+        }
+        view = view.superview;
+    }
+    return nil;
+}
+
+
 
 @end

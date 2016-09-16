@@ -20,25 +20,25 @@
 - (Node*) getTail;
 
 // get node at specified position
-- (Node*) getNodeAtPosition:(int)pos;
+- (Node*) getNodeAtPosition:(long)position;
 
 // add to end of list
-- (void) add:(id)element;
+- (BOOL) add:(id)element;
 
 // add after specified node
-- (void) add:(id)element afterNode:(Node*)node;
+- (BOOL) add:(id)element afterNode:(Node*)node;
 
 // insert node at specified position
-- (BOOL) insert:(id)element atPosition:(int)pos;
+- (BOOL) insert:(id)element atPosition:(long)position;
 
 // remove given Node
-- (void) remove:(Node*)node;
+- (BOOL) remove:(Node*)node;
 
 // remove Node at given Position
-- (void) removeNodeAtPosition:(int)position;
+- (BOOL) removeNodeAtPosition:(long)position;
 
 // remove first occurance of given data object id
-- (void) removeFirst:(id)element;
+- (BOOL) removeFirst:(id)element;
 
 // removes all nodes
 - (void) clear;

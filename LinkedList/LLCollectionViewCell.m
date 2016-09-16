@@ -21,14 +21,17 @@
 
 -(void)awakeFromNib
 {
+    [super awakeFromNib];
     self.lblData.layer.borderWidth = 2.0;
     self.lblData.layer.borderColor = [UIColor grayColor].CGColor;
-    self.lblData.layer.cornerRadius = 4;
+    self.lblData.layer.cornerRadius = 8;
 }
 
 - (IBAction)didTapDeleteButton:(id)sender {
+    
+    if(self.cellDelegate && [self.cellDelegate respondsToSelector:@selector(didTapDeleteButton:)])
+        [self.cellDelegate didTapDeleteButton:sender];
 }
-
 
 -(void)setEditing:(BOOL)editing
 {

@@ -10,7 +10,8 @@
 
 @protocol LLCollectionViewCellDelegate <NSObject>
 
-
+@optional
+-(void)didTapDeleteButton:(id)sender;
 
 @end
 
@@ -18,6 +19,7 @@
 @interface LLCollectionViewCell : UICollectionViewCell
 
 @property (assign, nonatomic) BOOL editing;
+@property (nonatomic, weak) id<LLCollectionViewCellDelegate> cellDelegate;
 
 - (IBAction)didTapDeleteButton:(id)sender;
 - (void) setData:(NSString*) theData;

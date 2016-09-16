@@ -38,9 +38,11 @@
 }
 
 // add to end of list
-- (void) add:(id)element {
+- (BOOL) add:(id)element {
+    if(!element)
+        return NO;
     Node *node = [[Node alloc] initWithData:element];
-    
+        
     if (head == NULL) {
         head = node;
     }
@@ -49,12 +51,16 @@
         tail.next = node;
         node.prev = tail;
     }
-    
     ++nodeCount;
     tail = node;
+    if(node)
+        return YES;
+    return NO;
 }
 
-- (void) add:(id)element afterNode:(Node*)node {
+- (BOOL) add:(id)element afterNode:(Node*)node {
+    if(!element || !node)
+        return NO;
     Node *newNode = [[Node alloc] initWithData:element];
     
     if (node == nil) {
@@ -86,10 +92,16 @@
         }
     }
     ++nodeCount;
+    if(newNode)
+        return YES;
+    return NO;
 }
 
 // remove given Node
-- (void) remove:(Node*)node {
+- (BOOL) remove:(Node*)node {
+    
+    if(!node)
+        return NO;
     
     Node *prev = node.prev;
     Node *next = node.next;
@@ -117,13 +129,14 @@
     
     --nodeCount;
     node = nil;
+    return YES;
 }
 
 // remove given Node
-- (void) removeNodeAtPosition:(int)position {
+- (BOOL) removeNodeAtPosition:(long)position {
     
     if(!nodeCount || nodeCount < position)
-        return;
+        return NO;
     Node *n = head;
     int i = 0;
     while(i < position-1)
@@ -131,17 +144,17 @@
         n = n.next;
         i++;
     }
-    [self remove:n];
+    return [self remove:n];
 }
 
 
-- (void) removeFirst:(id)element {
+- (BOOL) removeFirst:(id)element {
     for (Node *n=head; n != NULL; n = n.next) {
         if (n.data == element) {
-            [self remove:n];
-            break;
+            return [self remove:n];
         }
     }
+    return NO;
 }
 
 - (void) clear {
@@ -166,13 +179,13 @@
     return nodeCount;
 }
 
-- (Node*) getNodeAtPosition:(int)pos {
+- (Node*) getNodeAtPosition:(long)position {
     
-    if(!nodeCount || nodeCount < pos)
+    if(!nodeCount || nodeCount < position || position < 0)
         return nil;
     Node *n = head;
     int i = 0;
-    while(i < pos-1)
+    while(i < position-1)
     {
         n = n.next;
         i++;
@@ -180,12 +193,12 @@
     return n;
 }
 
-- (BOOL) insert:(id)element atPosition:(int)pos {
+- (BOOL) insert:(id)element atPosition:(long)position {
 
-    if(nodeCount && nodeCount+1 < pos)
+    if(nodeCount && nodeCount+1 < position)
         return NO;
 
-    if(pos == nodeCount+1)
+    if(position == nodeCount+1)
     {
         [self add:element];
         return YES;
@@ -193,7 +206,7 @@
     
     Node *n = head;
     int i = 0;
-    while(i < pos-1)
+    while(i < position-1)
     {
         n = n.next;
         i++;

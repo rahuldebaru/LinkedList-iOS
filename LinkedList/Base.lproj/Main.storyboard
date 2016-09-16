@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LOf-cd-lyS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LOf-cd-lyS">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Linked List-->
@@ -15,20 +16,18 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type any text and enter position to insert, leave position as blank to append in the end." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wmV-qn-AUo" userLabel="Info Label">
-                                <rect key="frame" x="20" y="64" width="560" height="42"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type any text and enter position to insert, leave position as blank to append." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wmV-qn-AUo" userLabel="Info Label">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="Rcr-Dh-Ugu"/>
+                                    <constraint firstAttribute="height" constant="60" id="Rcr-Dh-Ugu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Text to insert" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="KLe-Bt-ZGh" userLabel="Input Text Field">
-                                <rect key="frame" x="20" y="113" width="442" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="9MJ-XV-RCM"/>
                                 </constraints>
@@ -36,7 +35,6 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uG6-5L-MeM" userLabel="Add Button">
-                                <rect key="frame" x="558" y="117" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="NRI-k7-C6G"/>
                                     <constraint firstAttribute="height" constant="22" id="qVK-sb-P6E"/>
@@ -46,7 +44,6 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Position" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0wA-04-fdq" userLabel="Position Text Field">
-                                <rect key="frame" x="470" y="113" width="80" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="4MV-3M-Ra5"/>
                                     <constraint firstAttribute="height" constant="30" id="Slb-Q9-baO"/>
@@ -54,9 +51,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List Empty" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gH-k2-4y9">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ify-Na-36L">
-                                <rect key="frame" x="20" y="151" width="560" height="429"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6O1-oe-6R9">
                                     <size key="itemSize" width="50" height="400"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -65,19 +66,17 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewDataCellID" id="lAj-qj-8kr" userLabel="Data Cell" customClass="LLCollectionViewCell">
-                                        <rect key="frame" x="0.0" y="15" width="50" height="400"/>
+                                        <rect key="frame" x="0.0" y="-11" width="50" height="400"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="400"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tiR-Hp-M9z" userLabel="Data">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="400"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhN-6R-1Zb">
-                                                    <rect key="frame" x="3" y="0.0" width="44" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="44" id="0gz-bA-l8u"/>
                                                         <constraint firstAttribute="height" constant="44" id="QfE-v0-NUC"/>
@@ -88,7 +87,6 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="tiR-Hp-M9z" firstAttribute="height" secondItem="lAj-qj-8kr" secondAttribute="height" id="0mG-tX-Qae"/>
@@ -96,7 +94,7 @@
                                             <constraint firstItem="tiR-Hp-M9z" firstAttribute="width" secondItem="lAj-qj-8kr" secondAttribute="width" id="QeI-c1-Pso"/>
                                             <constraint firstItem="tiR-Hp-M9z" firstAttribute="centerY" secondItem="lAj-qj-8kr" secondAttribute="centerY" id="S7P-X0-nTR"/>
                                             <constraint firstItem="dhN-6R-1Zb" firstAttribute="centerX" secondItem="lAj-qj-8kr" secondAttribute="centerX" id="WUZ-mW-rfZ"/>
-                                            <constraint firstItem="dhN-6R-1Zb" firstAttribute="top" secondItem="lAj-qj-8kr" secondAttribute="topMargin" constant="-8" id="lKD-1I-LoC"/>
+                                            <constraint firstItem="dhN-6R-1Zb" firstAttribute="top" secondItem="lAj-qj-8kr" secondAttribute="topMargin" constant="10" id="lKD-1I-LoC"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="btnDelete" destination="dhN-6R-1Zb" id="MII-wb-c36"/>
@@ -104,17 +102,14 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewArrowCellID" id="vGp-8J-bGy" userLabel="Arrow Cell">
-                                        <rect key="frame" x="60" y="15" width="50" height="400"/>
+                                        <rect key="frame" x="60" y="-11" width="50" height="400"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="400"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="9D1-Ue-QsZ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="400"/>
-                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="9D1-Ue-QsZ"/>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="9D1-Ue-QsZ" firstAttribute="height" secondItem="vGp-8J-bGy" secondAttribute="height" id="G0f-Vv-wSC"/>
@@ -130,11 +125,13 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="0wA-04-fdq" firstAttribute="centerY" secondItem="uG6-5L-MeM" secondAttribute="centerY" id="0h4-ku-EDZ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3gH-k2-4y9" secondAttribute="bottom" constant="20" id="465-Bt-T76"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ify-Na-36L" secondAttribute="bottom" constant="20" id="7Y4-tR-SNm"/>
                             <constraint firstItem="KLe-Bt-ZGh" firstAttribute="centerY" secondItem="0wA-04-fdq" secondAttribute="centerY" id="8Wn-R7-I9S"/>
+                            <constraint firstItem="3gH-k2-4y9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ApN-qg-uQO"/>
                             <constraint firstAttribute="leadingMargin" secondItem="KLe-Bt-ZGh" secondAttribute="leading" id="DCe-9f-sEG"/>
                             <constraint firstItem="wmV-qn-AUo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Dk3-T1-K32"/>
                             <constraint firstItem="Ify-Na-36L" firstAttribute="trailing" secondItem="wmV-qn-AUo" secondAttribute="trailing" id="FVV-n6-w50"/>
@@ -142,6 +139,8 @@
                             <constraint firstItem="uG6-5L-MeM" firstAttribute="leading" secondItem="0wA-04-fdq" secondAttribute="trailing" constant="8" id="RoQ-uV-ZCG"/>
                             <constraint firstItem="Ify-Na-36L" firstAttribute="top" secondItem="uG6-5L-MeM" secondAttribute="bottom" constant="12" id="SNO-hj-P8i"/>
                             <constraint firstAttribute="leadingMargin" secondItem="wmV-qn-AUo" secondAttribute="leading" id="a1w-Dw-nJ1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3gH-k2-4y9" secondAttribute="trailing" id="boD-zN-XyB"/>
+                            <constraint firstItem="3gH-k2-4y9" firstAttribute="top" secondItem="KLe-Bt-ZGh" secondAttribute="bottom" constant="20" id="eUJ-OV-HKW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wmV-qn-AUo" secondAttribute="trailing" id="pU4-RZ-dYo"/>
                             <constraint firstItem="uG6-5L-MeM" firstAttribute="top" secondItem="wmV-qn-AUo" secondAttribute="bottom" constant="11" id="qcs-ad-HN5"/>
                             <constraint firstItem="uG6-5L-MeM" firstAttribute="trailing" secondItem="wmV-qn-AUo" secondAttribute="trailing" id="un3-ux-nfo"/>
@@ -159,6 +158,7 @@
                         <outlet property="btnAdd" destination="uG6-5L-MeM" id="MSN-bm-kQF"/>
                         <outlet property="btnEdit" destination="bZu-dP-nWS" id="sDB-Ux-4X5"/>
                         <outlet property="collectionView" destination="Ify-Na-36L" id="dow-LR-7dI"/>
+                        <outlet property="lblEmptyList" destination="3gH-k2-4y9" id="0wO-jd-a08"/>
                         <outlet property="txtData" destination="KLe-Bt-ZGh" id="OUw-m3-VNQ"/>
                         <outlet property="txtPosition" destination="0wA-04-fdq" id="Fqn-Un-6mQ"/>
                     </connections>
