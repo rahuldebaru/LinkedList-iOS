@@ -23,13 +23,13 @@
 - (Node*) getNodeAtPosition:(long)position;
 
 // add to end of list
-- (BOOL) add:(id)element;
+- (Node*) add:(id)element;
 
 // add after specified node
-- (BOOL) add:(id)element afterNode:(Node*)node;
+- (Node*) add:(id)element afterNode:(Node*)node;
 
 // insert node at specified position
-- (BOOL) insert:(id)element atPosition:(long)position;
+- (Node*) insert:(id)element atPosition:(long)position;
 
 // remove given Node
 - (BOOL) remove:(Node*)node;

@@ -43,18 +43,31 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)didTapEdit:(id)sender {
-    if(!self.isEditMode) {
-        UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(didTapEdit:)];
-        self.navigationItem.rightBarButtonItem = barButton;
-        self.isEditMode = YES;
-    } else {
+-(void)setIsEditMode:(BOOL)mode
+{
+    _isEditMode = mode;
+    self.txtData.enabled = !_isEditMode;
+    self.txtPosition.enabled = !_isEditMode;
+    self.btnAdd.enabled = !_isEditMode;
+    if(_isEditMode)
+    {
+        UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(didTapEdit:)];
+        self.navigationItem.rightBarButtonItem = rightBarButton;
+        
+        UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(didTapTrash:)];
+        self.navigationItem.leftBarButtonItem = leftBarButton;
+    }
+    else
+    {
         UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(didTapEdit:)];
         self.navigationItem.rightBarButtonItem = barButton;
-        self.isEditMode = NO;
+        self.navigationItem.leftBarButtonItem = nil;
     }
-    
     [self.collectionView reloadData];
+}
+
+- (IBAction)didTapEdit:(id)sender {
+    self.isEditMode = !self.isEditMode;
 }
 
 - (IBAction)didTapAdd:(id)sender {
@@ -84,6 +97,20 @@
     self.txtData.text = @"";
     self.txtPosition.text = @"";
 }
+
+- (IBAction)didTapTrash:(id)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:@"Delete all nodes?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action){
+        [self.list clear];
+        [self.collectionView reloadData];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action){
+    }];
+    [alert addAction:cancelAction];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 
 #pragma mark - COLLECTION VIEW
 
@@ -158,6 +185,7 @@
     }
 }
 
+#pragma mark - PRIVATE
 
 - (UIView *)superviewWithClassName:(NSString *)className fromView:(UIView *)view
 {
@@ -171,7 +199,6 @@
     }
     return nil;
 }
-
 
 
 @end

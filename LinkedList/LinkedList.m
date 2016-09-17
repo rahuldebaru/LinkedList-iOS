@@ -29,6 +29,19 @@
     return self;
 }
 
+- (void) dealloc {
+    Node *n = head;
+    while (n != NULL) {
+        Node *nodeToDealloc = n;
+        n = n.next;
+        nodeToDealloc = nil;
+    }
+}
+
+- (int) count {
+    return nodeCount;
+}
+
 - (Node*) getHead {
     return head;
 }
@@ -37,8 +50,23 @@
     return tail;
 }
 
+- (Node*) getNodeAtPosition:(long)position {
+    
+    if(!nodeCount || nodeCount < position || position < 0)
+        return nil;
+    Node *n = head;
+    int i = 0;
+    while(i < position-1)
+    {
+        n = n.next;
+        i++;
+    }
+    return n;
+}
+
+
 // add to end of list
-- (BOOL) add:(id)element {
+- (Node*) add:(id)element {
     if(!element)
         return NO;
     Node *node = [[Node alloc] initWithData:element];
@@ -53,12 +81,10 @@
     }
     ++nodeCount;
     tail = node;
-    if(node)
-        return YES;
-    return NO;
+    return node;
 }
 
-- (BOOL) add:(id)element afterNode:(Node*)node {
+- (Node*) add:(id)element afterNode:(Node*)node {
     if(!element || !node)
         return NO;
     Node *newNode = [[Node alloc] initWithData:element];
@@ -92,9 +118,49 @@
         }
     }
     ++nodeCount;
-    if(newNode)
-        return YES;
-    return NO;
+
+    return newNode;
+}
+
+- (Node*) insert:(id)element atPosition:(long)position {
+    
+    if(nodeCount && nodeCount+1 < position)
+        return nil;
+    
+    if(position == nodeCount+1)
+    {
+        return [self add:element];
+    }
+    
+    Node *n = head;
+    int i = 0;
+    while(i < position-1)
+    {
+        n = n.next;
+        i++;
+    }
+    
+    if(n)
+    {
+        Node *newNode = [[Node alloc] initWithData:element];
+        // Adjust Head and Tail if required
+        if(n==head)
+        {
+            newNode.next = head;
+            head.prev = newNode;
+            head = newNode;
+        }
+        else
+        {
+            newNode.prev = n.prev;
+            newNode.next = n;
+            newNode.prev.next = newNode;
+            newNode.next.prev = newNode;
+        }
+        ++nodeCount;
+        return newNode;
+    }
+    return nil;
 }
 
 // remove given Node
@@ -147,7 +213,6 @@
     return [self remove:n];
 }
 
-
 - (BOOL) removeFirst:(id)element {
     for (Node *n=head; n != NULL; n = n.next) {
         if (n.data == element) {
@@ -166,75 +231,5 @@
     }
 }
 
-- (void) dealloc {
-    Node *n = head;
-    while (n != NULL) {
-        Node *nodeToDealloc = n;
-        n = n.next;
-        nodeToDealloc = nil;
-    }
-}
-
-- (int) count {
-    return nodeCount;
-}
-
-- (Node*) getNodeAtPosition:(long)position {
-    
-    if(!nodeCount || nodeCount < position || position < 0)
-        return nil;
-    Node *n = head;
-    int i = 0;
-    while(i < position-1)
-    {
-        n = n.next;
-        i++;
-    }
-    return n;
-}
-
-- (BOOL) insert:(id)element atPosition:(long)position {
-
-    if(nodeCount && nodeCount+1 < position)
-        return NO;
-
-    if(position == nodeCount+1)
-    {
-        [self add:element];
-        return YES;
-    }
-    
-    Node *n = head;
-    int i = 0;
-    while(i < position-1)
-    {
-        n = n.next;
-        i++;
-    }
-    
-    if(n)
-    {
-        Node *newNode = [[Node alloc] initWithData:element];
-        // Adjust Head and Tail if required
-        if(n==head)
-        {
-            newNode.next = head;
-            head.prev = newNode;
-            head = newNode;
-        }
-        else
-        {
-            Node *newNode = [[Node alloc] initWithData:element];
-            newNode.prev = n.prev;
-            newNode.next = n;
-            newNode.prev.next = newNode;
-            newNode.next.prev = newNode;
-        }
-        
-        ++nodeCount;
-        return YES;
-    }
-    return NO;
-}
 
 @end
